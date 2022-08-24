@@ -1,5 +1,3 @@
-from glob import glob
-from importlib.abc import Traversable
 import os
 from flask import Flask, flash, request, redirect, url_for, send_from_directory,render_template,jsonify
 from flask import current_app, g
@@ -69,10 +67,11 @@ def get_data():
         consumo = prediction['Consumo']
         consumo = float(consumo)
         consumo = "{:.2f}".format(consumo)
-        
-        return render_template('sghospital.html',  consumo = consumo)
+        unidade = 'kWh/m².year'
+        return render_template('sghospital.html',  consumo = consumo, unidade = unidade)
     consumo = 'not calculated'
-    return render_template('sghospital.html', consumo = consumo)      
+    unidade = ''
+    return render_template('sghospital.html', consumo = consumo, unidade = unidade)      
     
   
 @app.route('/upload/<name>')

@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Predictive Model for Thermal Loads in Hospitals</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Predictive Model for Thermal Loads in Hospitals</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        h1{
+        text-align: center;        
+        }
+        h2{
+            text-align: center;
+        }
 
+    </style>
 </head>
 <body style="font-family: Calibri;">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     <div class="container">
+    <link rel=stylesheet type=text/css href="url_for('static',filename='style.css')"> 
+        <a style="margin-left:10px;" href="https://labeee.ufsc.br">
+        <img src="static/pics/LabEEE_Final_Completo_Maior.png" alt = "logo LabEEE" width="500" style="margin-top:25px" >
+        </a>
 
-        <div style="margin-left:10px;">
-            <span  href="https://labeee.ufsc.br">
-                <img src="static/pics/LabEEE_Final_Completo_Maior.png" width="500", style="margin-top:25px"> 
-            </span>
+        <a href="https://www.saint-gobain.com.br/">
             <span style="float: right;margin-right: 10px;margin-top: 15px;text-align: right;">
-                <span  href="https://www.saint-gobain.com.br/">
-                    <img src="static/pics/SaintGobain.png" width="250", style="margin-top:5px"> 
-                </span>
+            <img src="static/pics/SaintGobain.png" alt = "logo SG" width="250" style="margin-top:5px"> 
             </span>
-        </div>
+        </a>               
         
-
+            
+            <h1 style="margin-top: 40px;margin-bottom: 30px;">
         
+                    Thermal Loads for Hospitals <br>
+                    &nbsp;&nbsp;
+            
+            </h1>
         
-        <br>
-        <h1 style="margin-top: 40px;margin-bottom: 30px;">
-            <center>
-                Thermal Loads for Hospitals <br>
-                &nbsp;&nbsp;
-            </center>
-        </h1>
         
         <p style="font-size: 25px;color:#6E6E6E;">Predictive model interface to estimate the thermal loads of Hospitals  <br></p>
 
         
-            <p style="font-size: 25px;color:#6E6E6E;"> The thermal load of the model is: <b>{{consumo}}</b></p>
+            <p style="font-size: 25px;color:#6E6E6E;"> The thermal load of the model is: <b>{{consumo}} {{unidade}}</b></p>
             
     
         
@@ -44,7 +48,7 @@
     <form action="" method=post enctype=multipart/form-data>
         
 
-        <h2> <center>Inputs Information &nbsp;&nbsp; </center>
+        <h2> Inputs Information &nbsp;&nbsp;
             <span title="Transmitância térmica da Cobertura">
                 <i class="fa fa-exclamation-circle" style="margin-top: 80px;"></i>
             </span>
@@ -52,100 +56,100 @@
 
         <div class="form-group row">
             <div class="col-sm-6">
-                <p style="margin-top: 20px; font-size: 20px; color:#6E6E6E;">Thermal transmittance of walls: &nbsp;&nbsp;</p>
+                <p style="margin-top: 20px; font-size: 20px; color:#6E6E6E;">Thermal transmittance of walls (W/m²K): &nbsp;&nbsp;</p>
                 <div class="input-group my-3">
-                    <div class="custom-file">
-                        <input type="number" step = 0.01 name=thermalwall  aria-describedby="inputGroupFileAddon01" id="thermalwall" >
-                        
-                    </div>
+                    <div class="slidecontainer">
+                        <input type="range" min="0.11" max="4.4" value="0.11" class="slider" step = "0.01" name="thermalwall" id="thermalwall" oninput="this.nextElementSibling.value = this.value" > 
+                        <output>0.11</output> <span>(W/m²K)</span>
+                    </div>                    
                 </div>
             </div>
+
             <div class="col-sm-6">
-                <p style="margin-top: 20px;font-size: 20px; color:#6E6E6E;">Thermal transmittance of roofs: &nbsp;&nbsp;</p>
-                <div class="input-group my-3">
+                <p style="margin-top: 20px;font-size: 20px; color:#6E6E6E;">Thermal transmittance of roofs (W/m²K): &nbsp;&nbsp;</p>
+                <div class="slidecontainer">
                     <div class="custom-file">
-                    <input type="number" step = 0.01 name=thermalroof  id="thermalroof" aria-describedby="inputGroupFileAddon01" >
-                    
-                    </div>
+                        <input type="range" min="0.33" max="2.0" value="0.11" class="slider" step = "0.01" name="thermalroof"  id="thermalroof" oninput="this.nextElementSibling.value = this.value">
+                        <output>0.33</output> <span>(W/m²K)</span>
+                    </div>            
                 </div>
-    
             </div>
         </div>        
 
         <div class="form-group row">
             <div class="col-sm-6">
                 <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Walls solar absortance: &nbsp;&nbsp;</p>
-                <div class="input-group my-6">
+                <div class="slidecontainer">
                     <div class="custom-file">
-                        <input type='number' step = 0.01 name=wallabs  aria-describedby="inputGroupFileAddon01" id="wallabs" >
-                        
+                        <input type="range" min="0.2" max="0.8" value="0.11" class="slider" step = 0.01 name=wallabs id="wallabs" oninput="this.nextElementSibling.value = this.value">
+                        <output>0.2</output>
+                    </div>
+                </div>  
+            </div>
+
+            <div class="col-sm-6">                            
+                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Roof solar absortance: &nbsp;&nbsp;</p>
+                <div class="slidecontainer">
+                    <div class="custom-file">
+                        <input type="range" min="0.2" max="0.8" value="0.11" class="slider" step = 0.01 name=roofabs  id="roofabs" oninput="this.nextElementSibling.value = this.value">
+                        <output>0.2</output>
                     </div>
                 </div>
-               
             </div>
-            <div class="col-sm-6">
-            
-                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Roof solar absortance: &nbsp;&nbsp;</p>
-                    <div class="input-group my-3">
-                        <div class="custom-file">
-                        <input type="number" step = 0.01 name=roofabs  id="roofabs" aria-describedby="inputGroupFileAddon01" >
-                        
-                        </div>
-                    </div>
-            </div>
+
         </div>           
 
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Internal Wall: &nbsp;&nbsp;</p>
-                    <div class="input-group my-6">
-                        <div class="custom-file">
-                        <input type="text" name=wallint  id="rwallint" aria-describedby="inputGroupFileAddon01" >
-                        
-                        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Glazing Solar Heat Gain Coefficient: &nbsp;&nbsp;</p>
+                <div class="slidecontainer">
+                    <div class="custom-file">
+                        <input type="range" min="0.29" max="0.65" value="0.29" class="slider" step = 0.01 name=sghglazing  id="gsghglazing" oninput="this.nextElementSibling.value = this.value">
+                        <output>0.29</output><span>(W/m²)</span>                        
                     </div>
-                   
-                </div>
+                </div>        
+            </div>     
+        
 
-                <div class="col-sm-6">                
-                    <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Ligth Density (W/m²): &nbsp;&nbsp;</p>
-                        <div class="input-group my-3">
-                            <div class="custom-file">
-                            <input type="number" step = 0.01 name=lightdensity   id="lightdensity" aria-describedby="inputGroupFileAddon01" >
-                            
-                            </div>
-                        </div>
-                </div>
-
-            </div>            
-
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Glazing Solar Heat Gain Coefficient: &nbsp;&nbsp;</p>
-                    <div class="input-group my-6">
-                        <div class="custom-file">
-                        <input type="number" step = 0.01 name=sghglazing  id="gsghglazing" aria-describedby="inputGroupFileAddon01" >
-                        
-                        </div>
-                    </div>        
-                </div>       
-           
-                <div class="col-sm-6">
-                    <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">City (Cooling Degree Hours) &nbsp;&nbsp;</p>
-                    <div class="input-group my-3">
-                        <div class="custom-file">
-                        <input type="number" name=weather  id="weather" aria-describedby="inputGroupFileAddon01" >
-                        
-                        </div>
+            <div class="col-sm-6">                
+                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Ligth Density (W/m²): &nbsp;&nbsp;</p>
+                <div class="slidecontainer">
+                    <div class="custom-file">
+                        <input type="range" min="8.7" max="12" value="8.7" class="slider" step = 0.01 name=lightdensity   id="lightdensity" oninput="this.nextElementSibling.value = this.value">
+                        <output>8.7</output><span>(W/m²)</span>
                     </div>
+                </div>
             </div>
+        </div>            
 
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">Internal Wall: &nbsp;&nbsp;</p>
+                <div class="slidecontainer">
+                    <div class="custom-file">
+                        <input list = "listwalls" name=wallint  id="rwallint" >
+                        <datalist id = "listwalls">
+                        <option value="Light 1"></option>
+                        <option value="Ligth 2"></option>
+                        <option value="Heavy"></option>
+                        </datalist>   
+                    </div>
+                </div>
+            </div>
+  
+           
+            <div class="col-sm-6">
+                <p style="margin-top: 10px; font-size: 20px; color:#6E6E6E;">City (Cooling Degree Hours) &nbsp;&nbsp;</p>
+                <div class="input-group my-3">
+                    <div class="custom-file">
+                        <input type="number" name=weather  id="weather">
+                    </div>
+                </div>
+            </div>  
         </div>         
      
-	<button class='btn btn-dark btn-lg btn-block'type=submit id='btnCalculate' >Calculate</button>
+	    <button class='btn btn-dark btn-lg btn-block' type=submit id='btnCalculate' >Calculate</button>
     </form>
-
-</div>
-  </div>
+    </div>
 </body>
 </html>
